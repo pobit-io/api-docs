@@ -1,451 +1,578 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pobit API Documentation Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 Pobit API Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+        :root {
+            /* Colors from design system */
+            --primary-main: #186FB3;
+            --secondary-main: #2F8132;
+            --bg-main: #FFFFFF;
+            --bg-light: #FAFAFA;
+            --bg-subtle: #F2F2F2;
+            --bg-dark: #263238;
+            --text-primary: #000000;
+            --text-secondary: #333333;
+            --text-muted: #666666;
+            --text-inverse: #FFFFFF;
 
-      body {
-        font-family:
-          'Inter',
-          -apple-system,
-          BlinkMacSystemFont,
-          'Segoe UI',
-          sans-serif;
-        line-height: 1.6;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        color: #333;
-      }
+            /* Status colors */
+            --success-bg: rgba(29, 129, 39, 0.07);
+            --success-color: #1D8127;
+            --error-bg: rgba(212, 31, 28, 0.07);
+            --error-color: #D41F1C;
+            --warning-bg: rgba(104, 104, 207, 0.05);
+            --warning-color: #6868CF;
+            --info-bg: rgba(38, 50, 56, 0.05);
+            --info-color: #263238;
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
+            /* Typography */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Noto Sans KR', sans-serif;
+            --font-code: 'Courier', monospace;
 
-      .header {
-        text-align: center;
-        margin-bottom: 60px;
-      }
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-xxl: 48px;
 
-      .header h1 {
-        color: white;
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        letter-spacing: -0.02em;
-      }
+            /* Border radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
 
-      .header p {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.2rem;
-        font-weight: 400;
-        max-width: 600px;
-        margin: 0 auto;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.2);
 
-      .docs-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-        margin-bottom: 40px;
-      }
-
-      .doc-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-        position: relative;
-      }
-
-      .doc-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      .doc-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-      }
-
-      .doc-content {
-        padding: 32px;
-      }
-
-      .doc-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .doc-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 16px;
-        flex-shrink: 0;
-      }
-
-      .doc-icon i {
-        color: white;
-        font-size: 1.5rem;
-      }
-
-      .doc-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #2d3748;
-        line-height: 1.3;
-      }
-
-      .doc-description {
-        color: #718096;
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 24px;
-      }
-
-      .doc-features {
-        list-style: none;
-        margin-bottom: 28px;
-      }
-
-      .doc-features li {
-        display: flex;
-        align-items: center;
-        color: #4a5568;
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-      }
-
-      .doc-features li i {
-        color: #48bb78;
-        margin-right: 12px;
-        font-size: 0.8rem;
-        width: 16px;
-      }
-
-      .doc-actions {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
-
-      .doc-link {
-        flex: 1;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        text-decoration: none;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-weight: 500;
-        text-align: center;
-        transition: all 0.2s ease;
-        font-size: 0.95rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      .doc-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-      }
-
-      .doc-link i {
-        font-size: 0.9rem;
-      }
-
-      .doc-status {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        background: #e6fffa;
-        color: #234e52;
-        border: 1px solid #b2f5ea;
-      }
-
-      .doc-status i {
-        margin-right: 6px;
-        font-size: 0.7rem;
-      }
-
-      .footer {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
-        margin-top: 60px;
-        padding-top: 40px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .footer p {
-        margin-bottom: 10px;
-      }
-
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 24px;
-        margin-top: 20px;
-      }
-
-      .footer-links a {
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      .footer-links a:hover {
-        color: white;
-      }
-
-      @media (max-width: 768px) {
-        .header h1 {
-          font-size: 2.5rem;
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
         }
 
-        .header p {
-          font-size: 1.1rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .docs-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-main);
         }
 
-        .doc-content {
-          padding: 24px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
         }
 
-        .footer-links {
-          flex-direction: column;
-          gap: 12px;
+        /* Header */
+        .header {
+            background: var(--bg-light);
+            border-bottom: 1px solid #E1E1E1;
+            padding: var(--spacing-lg) 0;
         }
-      }
 
-      .coming-soon {
-        opacity: 0.7;
-        position: relative;
-      }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-      .coming-soon::after {
-        content: 'Coming Soon';
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        background: #fed7d7;
-        color: #742a2a;
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        border-radius: 12px;
-        font-weight: 600;
-      }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
 
-      .coming-soon .doc-link {
-        background: #a0aec0;
-        cursor: not-allowed;
-        pointer-events: none;
-      }
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+
+        /* Main content */
+        .main {
+            padding: var(--spacing-xxl) 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 42px;
+            font-weight: 400;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            background: var(--info-bg);
+            color: var(--info-color);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* API Grid */
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .api-card {
+            background: var(--bg-main);
+            border: 1px solid #E1E1E1;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-main);
+        }
+
+        .api-card.available {
+            cursor: pointer;
+        }
+
+        .api-card.coming-soon {
+            opacity: 0.7;
+            background: var(--bg-light);
+        }
+
+        .api-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .api-icon {
+            font-size: 28px;
+            margin-right: var(--spacing-sm);
+        }
+
+        .api-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .api-status {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .api-status.available {
+            background: var(--success-bg);
+            color: var(--success-color);
+        }
+
+        .api-status.coming-soon {
+            background: var(--warning-bg);
+            color: var(--warning-color);
+        }
+
+        .api-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
+        }
+
+        .api-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+        }
+
+        .api-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .method-badge {
+            padding: 2px var(--spacing-xs);
+            border-radius: var(--radius-sm);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-inverse);
+        }
+
+        .method-get { background: var(--primary-main); }
+        .method-post { background: var(--secondary-main); }
+        .method-put { background: #FF9800; }
+        .method-delete { background: #D41F1C; }
+        .method-patch { background: #9C27B0; }
+
+        .api-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 13.33px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            transition: all var(--transition-fast);
+        }
+
+        .btn-primary {
+            background: var(--success-bg);
+            color: var(--success-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--success-color);
+            color: var(--text-inverse);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-main);
+            color: var(--text-secondary);
+            border: 1px solid #E1E1E1;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-xxl);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-inverse);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: var(--spacing-xs);
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--text-inverse);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .api-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+
+            .api-actions {
+                flex-direction: column;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <h1>Pobit API Documentation</h1>
-        <p>
-          포빗 플랫폼의 모든 API 서비스에 대한 종합적인 문서화 허브입니다. 각
-          서비스별 상세한 엔드포인트 정보와 사용법을 확인하세요.
-        </p>
-      </header>
-
-      <main class="docs-grid">
-        <!-- Account API -->
-        <div class="doc-card">
-          <div class="doc-content">
-            <div class="doc-header">
-              <div class="doc-icon">
-                <i class="fas fa-user-shield"></i>
-              </div>
-              <h2 class="doc-title">Pobit Account API</h2>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🔗</span>
+                    <span class="logo-text">Pobit API Hub</span>
+                </a>
             </div>
-
-            <p class="doc-description">
-              사용자 인증, 계정 관리, 프로필 정보를 처리하는 핵심 API
-              서비스입니다. JWT 기반 인증과 소셜 로그인을 지원합니다.
-            </p>
-
-            <ul class="doc-features">
-              <li><i class="fas fa-check"></i> JWT 토큰 기반 인증</li>
-              <li><i class="fas fa-check"></i> Google 소셜 로그인</li>
-              <li><i class="fas fa-check"></i> 사용자 프로필 관리</li>
-              <li><i class="fas fa-check"></i> 역할 기반 접근 제어</li>
-              <li><i class="fas fa-check"></i> 이메일 마스킹 처리</li>
-            </ul>
-
-            <div class="doc-actions">
-              <a href="./pobit-account-api-docs.html" class="doc-link">
-                <i class="fas fa-book-open"></i>
-                API 문서 보기
-              </a>
-              <span class="doc-status">
-                <i class="fas fa-circle"></i>
-                활성
-              </span>
-            </div>
-          </div>
         </div>
+    </header>
 
-        <!-- Client API -->
-        <div class="doc-card coming-soon">
-          <div class="doc-content">
-            <div class="doc-header">
-              <div class="doc-icon">
-                <i class="fas fa-desktop"></i>
-              </div>
-              <h2 class="doc-title">Pobit Client API</h2>
-            </div>
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">🚀 Pobit API 허브</h1>
+                <p class="hero-subtitle">
+                    Pobit 플랫폼의 모든 API 문서를 한 곳에서 찾아보세요.
+                    개발자를 위한 통합 API 문서 포털입니다.
+                </p>
+                <div class="hero-badge">
+                    <span>📚</span>
+                    <span>2개의 API 서비스</span>
+                </div>
+            </section>
 
-            <p class="doc-description">
-              클라이언트 애플리케이션 관리, 설정, 배포를 담당하는 API
-              서비스입니다. 다양한 클라이언트 환경을 지원합니다.
-            </p>
+            <section class="api-grid">
+                <!-- Account API Card -->
+                <div class="api-card available" onclick="window.open('pobit-account-api-docs.html', '_blank')">
+                    <div class="api-card-header">
+                        <div>
+                            <span class="api-icon">🔐</span>
+                            <h2 class="api-title">Account API</h2>
+                        </div>
+                        <span class="api-status available">Available</span>
+                    </div>
 
-            <ul class="doc-features">
-              <li><i class="fas fa-check"></i> 클라이언트 애플리케이션 관리</li>
-              <li><i class="fas fa-check"></i> 설정 및 환경 변수 관리</li>
-              <li><i class="fas fa-check"></i> 배포 및 버전 관리</li>
-              <li><i class="fas fa-check"></i> 실시간 모니터링</li>
-              <li><i class="fas fa-check"></i> 성능 최적화</li>
-            </ul>
+                    <p class="api-description">
+                        사용자 계정 관리, 인증, 프로필 관리를 위한 API입니다.
+                        로컬 계정 및 소셜 로그인(Google), JWT 토큰 기반 인증을 지원합니다.
+                    </p>
 
-            <div class="doc-actions">
-              <a href="#" class="doc-link">
-                <i class="fas fa-book-open"></i>
-                API 문서 보기
-              </a>
-              <span class="doc-status">
-                <i class="fas fa-circle"></i>
-                개발 중
-              </span>
-            </div>
-          </div>
+                    <div class="api-meta">
+                        <span class="meta-badge">
+                            <span>📝</span>
+                            <span>v1.0.0</span>
+                        </span>
+                        <span class="meta-badge">
+                            <span>🔒</span>
+                            <span>RS256 JWT</span>
+                        </span>
+                        <span class="meta-badge">
+                            <span>⚡</span>
+                            <span>Rate Limited</span>
+                        </span>
+                    </div>
+
+                    <div class="api-methods">
+                        <span class="method-badge method-post">POST</span>
+                        <span class="method-badge method-get">GET</span>
+                    </div>
+
+                    <div class="api-actions">
+                        <a href="pobit-account-api-docs.html" class="btn btn-primary" target="_blank">
+                            <span>📖</span>
+                            <span>문서 보기</span>
+                        </a>
+                        <button class="btn btn-secondary" onclick="event.stopPropagation(); copyApiUrl('account')">
+                            <span>🔗</span>
+                            <span>링크 복사</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Client API Card (Coming Soon) -->
+                <div class="api-card coming-soon">
+                    <div class="api-card-header">
+                        <div>
+                            <span class="api-icon">📱</span>
+                            <h2 class="api-title">Client API</h2>
+                        </div>
+                        <span class="api-status coming-soon">Coming Soon</span>
+                    </div>
+
+                    <p class="api-description">
+                        클라이언트 애플리케이션을 위한 API입니다.
+                        앱 설정, 사용자 인터페이스 관리, 클라이언트별 기능을 제공할 예정입니다.
+                    </p>
+
+                    <div class="api-meta">
+                        <span class="meta-badge">
+                            <span>🚧</span>
+                            <span>개발 중</span>
+                        </span>
+                        <span class="meta-badge">
+                            <span>📅</span>
+                            <span>2024 Q1</span>
+                        </span>
+                        <span class="meta-badge">
+                            <span>🔄</span>
+                            <span>RESTful</span>
+                        </span>
+                    </div>
+
+                    <div class="api-methods">
+                        <span class="method-badge method-get">GET</span>
+                        <span class="method-badge method-post">POST</span>
+                        <span class="method-badge method-put">PUT</span>
+                        <span class="method-badge method-delete">DELETE</span>
+                    </div>
+
+                    <div class="api-actions">
+                        <button class="btn btn-primary" disabled>
+                            <span>📖</span>
+                            <span>문서 준비 중</span>
+                        </button>
+                        <button class="btn btn-secondary" disabled>
+                            <span>🔔</span>
+                            <span>알림 받기</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
         </div>
-      </main>
+    </main>
 
-      <footer class="footer">
-        <p>&copy; 2024 Pobit. 모든 권리 보유.</p>
-        <p>최신 업데이트: 2024년 12월</p>
-        <div class="footer-links">
-          <a
-            href="#"
-            onclick="alert('GitHub 링크가 준비 중입니다.'); return false;"
-          >
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a
-            href="#"
-            onclick="alert('지원 페이지가 준비 중입니다.'); return false;"
-          >
-            <i class="fas fa-life-ring"></i> 지원
-          </a>
-          <a
-            href="#"
-            onclick="alert('업데이트 로그가 준비 중입니다.'); return false;"
-          >
-            <i class="fas fa-history"></i> 업데이트 로그
-          </a>
-          <a
-            href="#"
-            onclick="alert('API 가이드가 준비 중입니다.'); return false;"
-          >
-            <i class="fas fa-book"></i> 개발자 가이드
-          </a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pobit API Hub</h3>
+                    <p>개발자를 위한 통합 API 문서 포털</p>
+                    <p>빠르고 안전한 API 서비스를 제공합니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>API 서비스</h3>
+                    <a href="pobit-account-api-docs.html">Account API</a>
+                    <a href="#" style="opacity: 0.5;">Client API (준비 중)</a>
+                </div>
+                <div class="footer-section">
+                    <h3>연락처</h3>
+                    <a href="mailto:support@pobit.io">support@pobit.io</a>
+                    <a href="https://pobit.io">pobit.io</a>
+                    <p>License: MIT</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pobit Development Team. All rights reserved.</p>
+            </div>
         </div>
-      </footer>
-    </div>
+    </footer>
 
     <script>
-      // 부드러운 스크롤 효과
-      document.addEventListener('DOMContentLoaded', function () {
-        // 카드 애니메이션 효과
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px',
-        };
 
-        const observer = new IntersectionObserver(function (entries) {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
+        // Copy API URL function
+        function copyApiUrl(apiType) {
+            const urls = {
+                'account': window.location.origin + '/pobit-account-api-docs.html'
+            };
+
+            const url = urls[apiType];
+            if (url) {
+                navigator.clipboard.writeText(url).then(() => {
+                    // Show temporary feedback
+                    const btn = event.target.closest('.btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<span>✅</span><span>복사됨!</span>';
+
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('복사 실패:', err);
+                });
             }
-          });
-        }, observerOptions);
+        }
 
-        // 모든 카드에 애니메이션 적용
-        document.querySelectorAll('.doc-card').forEach((card) => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(30px)';
-          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-          observer.observe(card);
-        });
 
-        // 클릭 효과
-        document.querySelectorAll('.doc-card').forEach((card) => {
-          card.addEventListener('click', function (e) {
-            if (!this.classList.contains('coming-soon')) {
-              const link = this.querySelector('.doc-link');
-              if (link && e.target !== link) {
-                link.click();
-              }
-            }
-          });
+        // Add hover effect to available cards
+        document.querySelectorAll('.api-card.available').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.cursor = 'pointer';
+            });
         });
-
-        // Coming soon 카드 클릭 시 알림
-        document.querySelectorAll('.coming-soon').forEach((card) => {
-          card.addEventListener('click', function (e) {
-            e.preventDefault();
-            const title = this.querySelector('.doc-title').textContent;
-            alert(`${title}는 현재 개발 중입니다. 곧 출시될 예정입니다!`);
-          });
-        });
-      });
     </script>
-  </body>
+</body>
 </html>
