@@ -63962,6 +63962,42 @@
                   </li>
                 </ul>
               </li>
+              <li data-item-id="tag/Health" class="sc-biJonm jycHIP">
+                <label
+                  type="tag"
+                  role="menuitem"
+                  class="sc-eHEENL btqmKr -depth1"
+                  ><span title="Health" class="sc-hzUIXc ylzCN">Health</span
+                  ><svg
+                    class="sc-dIsUp dvcDrG"
+                    version="1.1"
+                    viewBox="0 0 24 24"
+                    x="0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    y="0"
+                    aria-hidden="true"
+                  >
+                    <polygon
+                      points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "
+                    ></polygon></svg
+                ></label>
+                <ul class="sc-uxdHp kUEEAF">
+                  <li
+                    data-item-id="tag/Health/operation/HealthController_checkHealth"
+                    class="sc-biJonm jycHIP"
+                  >
+                    <label role="menuitem" class="sc-eHEENL dNhyuN -depth2"
+                      ><span
+                        type="get"
+                        class="sc-ikXwFM ecAtVr operation-type get"
+                        >get</span
+                      ><span width="calc(100% - 38px)" class="sc-hzUIXc jYJtsM"
+                        >Health check endpoint</span
+                      ></label
+                    >
+                  </li>
+                </ul>
+              </li>
             </ul>
             <div class="sc-kYPZxB blYhnj">
               <a
@@ -70838,6 +70874,102 @@
               </div>
             </div>
           </div>
+          <div
+            id="tag/Health"
+            data-section-id="tag/Health"
+            class="sc-eCApnc jlMQbh"
+          >
+            <div class="sc-iCoGMd gLxhOh">
+              <div class="sc-hKFxyN juinod">
+                <h1 class="sc-fujyAs bpZWeL">
+                  <a
+                    class="sc-crzoAE iUxAWq"
+                    href="#tag/Health"
+                    aria-label="tag/Health"
+                  ></a
+                  >Health
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div
+            id="tag/Health/operation/HealthController_checkHealth"
+            data-section-id="tag/Health/operation/HealthController_checkHealth"
+            class="sc-eCApnc liLqNm"
+          >
+            <div
+              data-section-id="operation/HealthController_checkHealth"
+              id="operation/HealthController_checkHealth"
+              class="sc-iCoGMd gLxhOh"
+            >
+              <div class="sc-hKFxyN juinod">
+                <h2 class="sc-pNWdM eftmgB">
+                  <a
+                    class="sc-crzoAE iUxAWq"
+                    href="#tag/Health/operation/HealthController_checkHealth"
+                    aria-label="tag/Health/operation/HealthController_checkHealth"
+                  ></a
+                  >Health check endpoint<!-- -->
+                </h2>
+                <div>
+                  <h3 class="sc-fIxmyt DvFer">Responses</h3>
+                  <div>
+                    <button class="sc-htmcrh jUGDyD" disabled="">
+                      <strong class="sc-fWWYYk cMoEZ">200<!-- --> </strong
+                      ><span class="sc-jcwpoC eDjFAZ"
+                        ><p>Service is healthy</p>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="sc-jSFjdj sc-gKAaRy gBjRyf gcushC">
+                <div class="sc-EZqKI fWsqvQ">
+                  <button class="sc-eEVmNe ilvUMs">
+                    <span type="get" class="sc-fmdNqN ihNycv http-verb get"
+                      >get</span
+                    ><span class="sc-jXcxbT fCEUju">/health</span
+                    ><svg
+                      class="sc-dIsUp bRmrKA"
+                      style="margin-right: -25px"
+                      version="1.1"
+                      viewBox="0 0 24 24"
+                      x="0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      y="0"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "
+                      ></polygon>
+                    </svg>
+                  </button>
+                  <div aria-hidden="true" class="sc-ljsmAU flIrdF">
+                    <div class="sc-jlZJtj fQkroN">
+                      <div class="sc-iJCRrE sc-ciSkZP jCdxGr lhENGb">
+                        <p>개발 서버</p>
+                      </div>
+                      <div tabindex="0" role="button">
+                        <div class="sc-dTSzeu dfUAUz">
+                          <span>http://localhost:3000</span>/health
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sc-jlZJtj fQkroN">
+                      <div class="sc-iJCRrE sc-ciSkZP jCdxGr lhENGb">
+                        <p>운영 서버</p>
+                      </div>
+                      <div tabindex="0" role="button">
+                        <div class="sc-dTSzeu dfUAUz">
+                          <span>https://api.pobit.io</span>/health
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="sc-ellfGf bgakXB"></div>
       </div>
@@ -72613,6 +72745,15 @@
                   tags: ['👤 Account (계정)'],
                 },
               },
+              '/health': {
+                get: {
+                  operationId: 'HealthController_checkHealth',
+                  parameters: [],
+                  responses: { 200: { description: 'Service is healthy' } },
+                  summary: 'Health check endpoint',
+                  tags: ['Health'],
+                },
+              },
             },
             info: {
               title: '🔐 Pobit Account API',
@@ -72865,87 +73006,91 @@
             'tag/Account-()/operation/AccountController_logoutDevice',
             'tag/Account-()/operation/AccountController_validateNickname',
             'tag/Account-()/operation/AccountController_changeNickname',
+            'tag/Health',
+            'tag/Health/operation/HealthController_checkHealth',
           ],
           index: {
             version: '2.3.9',
             fields: ['title', 'description'],
             fieldVectors: [
-              ['title/0', [0, 0.5, 1, 2.367]],
-              ['description/0', [0, 0.753, 2, 1.507]],
-              ['title/1', [0, 0.571]],
+              ['title/0', [0, 0.426, 1, 2.444]],
+              ['description/0', [0, 0.647, 2, 1.637]],
+              ['title/1', [0, 0.489]],
               [
                 'description/1',
                 [
-                  0, 0.757, 3, 1.16, 4, 1.31, 5, 1.651, 6, 1.378, 7, 2.016, 8,
-                  1.651, 9, 2.016, 10, 1.16, 11, 2.571,
+                  0, 0.65, 3, 1.23, 4, 1.436, 5, 1.699, 6, 1.438, 7, 2.048, 8,
+                  1.699, 9, 2.048, 10, 1.23, 11, 2.578,
                 ],
               ],
-              ['title/2', [12, 3.255]],
-              ['description/2', [13, 3.928]],
-              ['title/3', [0, 0.571]],
+              ['title/2', [12, 3.391]],
+              ['description/2', [13, 4.113]],
+              ['title/3', [0, 0.489]],
               [
                 'description/3',
                 [
-                  0, 0.766, 5, 1.056, 14, 1.645, 15, 1.645, 16, 3.024, 17, 2.5,
-                  18, 2.5, 19, 3.024, 20, 2.5, 21, 1.645, 22, 1.645, 23, 1.645,
-                  24, 1.645, 25, 1.645, 26, 1.645, 27, 1.645, 28, 1.645,
+                  0, 0.658, 5, 1.056, 14, 1.603, 15, 1.603, 16, 3.031, 17,
+                  2.479, 18, 2.479, 19, 3.031, 20, 2.479, 21, 1.603, 22, 1.603,
+                  23, 1.603, 24, 1.603, 25, 1.603, 26, 1.603, 27, 1.603, 28,
+                  1.603,
                 ],
               ],
-              ['title/4', [0, 0.5, 29, 1.269]],
-              ['description/4', [0, 0.735, 29, 1.82, 30, 2.664, 31, 3.397]],
-              ['title/5', [0, 0.5, 29, 1.269]],
-              ['description/5', [0, 0.741, 29, 1.79, 30, 2.619, 32, 3.34]],
-              ['title/6', [0, 0.457, 4, 0.793, 6, 1.116]],
+              ['title/4', [0, 0.426, 29, 1.364]],
+              ['description/4', [0, 0.631, 29, 1.95, 30, 2.777, 31, 3.496]],
+              ['title/5', [0, 0.426, 29, 1.364]],
+              ['description/5', [0, 0.636, 29, 1.914, 30, 2.726, 32, 3.432]],
+              ['title/6', [0, 0.389, 4, 0.879, 6, 1.196]],
               [
                 'description/6',
                 [
-                  0, 0.767, 3, 0.719, 4, 1.264, 5, 1.566, 6, 1.589, 7, 1.913, 8,
-                  1.566, 9, 1.249, 33, 1.913, 34, 1.249, 35, 1.249, 36, 2.44,
-                  37, 1.593, 38, 1.593, 39, 1.593,
+                  0, 0.658, 3, 0.739, 4, 1.373, 5, 1.591, 6, 1.655, 7, 1.918, 8,
+                  1.591, 9, 1.231, 33, 1.918, 34, 1.231, 35, 1.231, 36, 2.415,
+                  37, 1.55, 38, 1.55, 39, 1.55,
                 ],
               ],
-              ['title/7', [0, 0.421, 40, 2.741]],
+              ['title/7', [0, 0.359, 40, 2.841]],
               [
                 'description/7',
                 [
-                  0, 0.772, 2, 0.671, 3, 1.044, 4, 1.08, 6, 0.797, 8, 0.955, 33,
-                  1.166, 34, 1.166, 35, 1.166, 41, 2.313, 42, 1.487, 43, 1.487,
-                  44, 1.487,
+                  0, 0.663, 2, 0.688, 3, 1.089, 4, 1.161, 6, 0.804, 8, 0.95, 33,
+                  1.145, 34, 1.145, 35, 1.145, 41, 2.282, 42, 1.442, 43, 1.442,
+                  44, 1.442,
                 ],
               ],
-              ['title/8', [0, 0.457, 3, 0.94, 4, 0.793]],
+              ['title/8', [0, 0.389, 3, 1.023, 4, 0.879]],
               [
                 'description/8',
-                [0, 0.771, 2, 0.973, 3, 0.973, 4, 0.821, 10, 0.973, 45, 2.157],
+                [0, 0.663, 2, 1.019, 3, 1.019, 4, 0.875, 10, 1.019, 45, 2.135],
               ],
-              ['title/9', [0, 0.5, 46, 2.367]],
-              ['description/9', [0, 0.756, 2, 1.482]],
-              ['title/10', [0, 0.582]],
+              ['title/9', [0, 0.426, 46, 2.444]],
+              ['description/9', [0, 0.65, 2, 1.608]],
+              ['title/10', [0, 0.497]],
               [
                 'description/10',
-                [
-                  0, 0.768, 10, 1.09, 47, 2.416, 48, 2.416, 49, 2.416, 50,
-                  2.416,
-                ],
+                [0, 0.66, 10, 1.15, 47, 2.411, 48, 2.411, 49, 2.411, 50, 2.411],
               ],
-              ['title/11', [0, 0.582]],
+              ['title/11', [0, 0.497]],
               [
                 'description/11',
                 [
-                  0, 0.769, 10, 0.83, 51, 1.444, 52, 1.841, 53, 1.841, 54,
-                  1.841, 55, 1.841, 56, 1.841, 57, 1.841, 58, 1.841, 59, 1.841,
-                  60, 1.841, 61, 1.841, 62, 1.841, 63, 1.841,
+                  0, 0.66, 10, 0.861, 51, 1.434, 52, 1.805, 53, 1.805, 54,
+                  1.805, 55, 1.805, 56, 1.805, 57, 1.805, 58, 1.805, 59, 1.805,
+                  60, 1.805, 61, 1.805, 62, 1.805, 63, 1.805,
                 ],
               ],
-              ['title/12', [0, 0.571]],
-              ['description/12', [0, 0.772, 2, 1.028, 51, 1.788, 64, 2.279]],
-              ['title/13', [0, 0.571]],
-              ['description/13', [0, 0.746, 65, 3.455]],
-              ['title/14', [0, 0.552]],
+              ['title/12', [0, 0.489]],
+              ['description/12', [0, 0.663, 2, 1.081, 51, 1.799, 64, 2.265]],
+              ['title/13', [0, 0.489]],
+              ['description/13', [0, 0.641, 65, 3.563]],
+              ['title/14', [0, 0.472]],
               [
                 'description/14',
-                [0, 0.771, 10, 1.028, 66, 2.279, 67, 2.279, 68, 2.279],
+                [0, 0.662, 10, 1.081, 66, 2.265, 67, 2.265, 68, 2.265],
               ],
+              ['title/15', [69, 2.235]],
+              ['description/15', []],
+              ['title/16', [69, 1.611, 70, 2.444, 71, 2.444]],
+              ['description/16', [69, 2.71]],
             ],
             invertedIndex: [
               [
@@ -73088,8 +73233,10 @@
                 'bearer',
                 { _index: 8, title: {}, description: { 1: {}, 6: {}, 7: {} } },
               ],
+              ['check', { _index: 70, title: { 16: {} }, description: {} }],
               ['chrome', { _index: 55, title: {}, description: { 11: {} } }],
               ['cursor', { _index: 61, title: {}, description: { 11: {} } }],
+              ['endpoint', { _index: 71, title: { 16: {} }, description: {} }],
               ['etc', { _index: 60, title: {}, description: { 11: {} } }],
               ['firefox', { _index: 57, title: {}, description: { 11: {} } }],
               [
@@ -73101,6 +73248,14 @@
                 },
               ],
               ['hasnext', { _index: 62, title: {}, description: { 11: {} } }],
+              [
+                'health',
+                {
+                  _index: 69,
+                  title: { 15: {}, 16: {} },
+                  description: { 16: {} },
+                },
+              ],
               [
                 'http',
                 { _index: 34, title: {}, description: { 6: {}, 7: {} } },
