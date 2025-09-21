@@ -442,7 +442,7 @@
 
             <p class="api-description">
               사용자 계정 관리, 인증, 프로필 관리를 위한 API입니다. 로컬 계정 및
-              소셜 로그인(Google), JWT 토큰 기반 인증을 지원합니다.
+              소셜 로그인(Google), JWT 토큰 기반 인증, 이미지 업로드를 지원합니다.
             </p>
 
             <div class="api-meta">
@@ -463,6 +463,8 @@
             <div class="api-methods">
               <span class="method-badge method-post">POST</span>
               <span class="method-badge method-get">GET</span>
+              <span class="method-badge method-put">PUT</span>
+              <span class="method-badge method-delete">DELETE</span>
             </div>
 
             <div class="api-actions">
@@ -484,9 +486,9 @@
             </div>
           </div>
 
-          <!-- Client API Card (Coming Soon) -->
+          <!-- Client API Card -->
           <div
-            class="api-card"
+            class="api-card available"
             onclick="window.open('pobit-client-api-docs.html', '_blank')"
           >
             <div class="api-card-header">
@@ -494,44 +496,48 @@
                 <span class="api-icon">📱</span>
                 <h2 class="api-title">Client API</h2>
               </div>
-              <span class="api-status coming-soon">Coming Soon</span>
+              <span class="api-status available">Available</span>
             </div>
 
             <p class="api-description">
-              클라이언트 애플리케이션을 위한 API입니다. 앱 설정, 사용자
-              인터페이스 관리, 클라이언트별 기능을 제공할 예정입니다.
+              클라이언트 애플리케이션을 위한 API입니다. 환율 정보, 암호화폐 가격 조회 등
+              클라이언트별 기능을 제공합니다.
             </p>
 
             <div class="api-meta">
               <span class="meta-badge">
-                <span>🚧</span>
-                <span>개발 중</span>
+                <span>📝</span>
+                <span>v1.0.0</span>
               </span>
               <span class="meta-badge">
-                <span>📅</span>
-                <span>2024 Q1</span>
+                <span>💱</span>
+                <span>Exchange Rate</span>
               </span>
               <span class="meta-badge">
-                <span>🔄</span>
-                <span>RESTful</span>
+                <span>⚡</span>
+                <span>Rate Limited</span>
               </span>
             </div>
 
             <div class="api-methods">
               <span class="method-badge method-get">GET</span>
-              <span class="method-badge method-post">POST</span>
-              <span class="method-badge method-put">PUT</span>
-              <span class="method-badge method-delete">DELETE</span>
             </div>
 
             <div class="api-actions">
-              <button class="btn btn-primary" disabled>
+              <a
+                href="pobit-client-api-docs.html"
+                class="btn btn-primary"
+                target="_blank"
+              >
                 <span>📖</span>
-                <span>문서 준비 중</span>
-              </button>
-              <button class="btn btn-secondary" disabled>
-                <span>🔔</span>
-                <span>알림 받기</span>
+                <span>문서 보기</span>
+              </a>
+              <button
+                class="btn btn-secondary"
+                onclick="event.stopPropagation(); copyApiUrl('client')"
+              >
+                <span>🔗</span>
+                <span>링크 복사</span>
               </button>
             </div>
           </div>
@@ -550,7 +556,7 @@
           <div class="footer-section">
             <h3>API 서비스</h3>
             <a href="pobit-account-api-docs.html">Account API</a>
-            <a href="#" style="opacity: 0.5">Client API (준비 중)</a>
+            <a href="pobit-client-api-docs.html">Client API</a>
           </div>
           <div class="footer-section">
             <h3>연락처</h3>
@@ -570,6 +576,7 @@
       function copyApiUrl(apiType) {
         const urls = {
           account: window.location.origin + '/pobit-account-api-docs.html',
+          client: window.location.origin + '/pobit-client-api-docs.html',
         };
 
         const url = urls[apiType];
